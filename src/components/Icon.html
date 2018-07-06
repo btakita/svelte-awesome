@@ -54,11 +54,11 @@
         outerScale: 1,
       };
     },
-    setup(Icon) {
-      if (!Icon.icons) {
-        Icon.icons = icons; // eslint-disable-line no-param-reassign
-      }
-      Icon.register = (data) => { // eslint-disable-line no-param-reassign
+    methods: {
+      get icons() {
+        return icons;
+      },
+      register(data) {
         Object.keys(data).forEach((name) => {
           const icon = data[name];
           if (!icon.paths) {
@@ -79,7 +79,7 @@
           }
           icons[name] = icon; // eslint-disable-line no-param-reassign
         });
-      };
+      },
     },
     computed: {
       normalisedScale: ({ scale, outerScale }) => {
